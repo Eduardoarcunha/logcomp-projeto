@@ -1,0 +1,64 @@
+%{
+#include <stdio.h>
+extern int yylex();
+extern char* yytext;
+void yyerror(const char *s) { fprintf(stderr, "Error: %s\n", s); }
+%}
+
+%token NEWLINE LBRACE RBRACE PRINT IF ELSE COMBAT WHILE PROGRESS ACTION SCANLN CHARACTER MONSTER INT IDENTIFIER NUMBER OR AND EQ GT LT PLUS MINUS MUL DIV NOT ASSIGN LPAREN RPAREN
+%start PROGRAM
+
+%%
+
+PROGRAM: 
+    | PROGRAM STATEMENT
+    ;
+
+STATEMENT: 
+    ASSIGNMENT NEWLINE
+    | PRINT NEWLINE
+    | IF NEWLINE
+    | COMBAT_LOOP NEWLINE
+    | VAR NEWLINE
+    | ACTION NEWLINE
+    ;
+
+ASSIGNMENT:
+    IDENTIFIER ASSIGN BOOLEXPRESSION
+    ;
+
+PRINT:
+    "Println" LPAREN BOOLEXPRESSION RPAREN
+    ;
+
+IF:
+    "if" BOOLEXPRESSION BLOCK
+    | "if" BOOLEXPRESSION BLOCK "else" BLOCK
+    ;
+
+COMBAT_LOOP:
+    "combat" ASSIGNMENT "while" BOOLEXPRESSION "progress" BOOLEXPRESSION BLOCK
+    ;
+
+ACTION:
+    "action" IDENTIFIER LBRACE STATEMENT "act" RBRACE
+    ;
+
+VAR:
+    TYPE IDENTIFIER ASSIGN BOOLEXPRESSION
+    ;
+
+TYPE:
+    CHARACTER
+    | MONSTER
+    | INT
+    ;
+
+BOOLEXPRESSION:
+    BOOLTERM
+    | BOOLEXPRESSION OR BOOLTERM
+    ;
+
+// ... Continue with other grammar rules
+
+%%
