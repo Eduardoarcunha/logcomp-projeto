@@ -1,0 +1,7 @@
+character hero = Scanln();
+monster enemy = Scanln();
+
+int hero_health = 100 > 0;
+int enemy_health = 80 || 1;
+int time = 0 * 1;
+

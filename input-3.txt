@@ -1,0 +1,21 @@
+character hero = Scanln();
+monster enemy = Scanln();
+
+int hero_health = 100;
+int enemy_health = 80;
+int time = 0;
+
+Println("Battle begins");
+
+combat ; time = 0 ;  while hero_health > 0 || enemy_health > 0 progress time = time + 1 {
+    enemy_health = enemy_health - 10;
+    Println("Hero attacks!");
+    hero_health = hero_health - 5;
+    Println("Enemy counterattacks!");
+}
+
+if hero_health > 0 {
+    Println("Hero wins!");
+} else {
+    Println("Enemy wins!");
+}

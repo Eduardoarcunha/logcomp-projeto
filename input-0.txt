@@ -1,0 +1,3 @@
+int hero_health = 100;
+
+int teste2 = 2;
