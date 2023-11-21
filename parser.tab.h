@@ -81,7 +81,7 @@ extern int yydebug;
     CHARACTER = 282,               /* CHARACTER  */
     MONSTER = 283,                 /* MONSTER  */
     INT = 284,                     /* INT  */
-    SCANLN = 285,                  /* SCANLN  */
+    INPUT = 285,                   /* INPUT  */
     IDENTIFIER = 286,              /* IDENTIFIER  */
     NUMBER = 287,                  /* NUMBER  */
     STRING = 288                   /* STRING  */

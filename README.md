@@ -14,7 +14,7 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **ASSIGNMENT = IDENTIFIER, "=", BOOLEXPRESSION ;**
 
-**PRINT = "Println", "(", BOOLEXPRESSION, ")" ;**
+**PRINT = "print", "(", BOOLEXPRESSION, ")" ;**
 
 **IF = "if", "BOOLEXPRESSION, BLOCK, {"else", BLOCK}" ;**
 
@@ -36,7 +36,7 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **TERM = FACTOR, { ("*" | "/"), FACTOR } ;**
 
-**FACTOR = (("+" | "-" | "!"), FACTOR) | string | NUMBER | "(", BOOLEXPRESSION, ")" | IDENTIFIER | "Scanln", "(", ")" ;**
+**FACTOR = (("+" | "-" | "!"), FACTOR) | string | NUMBER | "(", BOOLEXPRESSION, ")" | IDENTIFIER | "input", "(", ")" ;**
 
 **IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;**
 

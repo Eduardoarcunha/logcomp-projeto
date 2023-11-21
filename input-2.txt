@@ -1,5 +1,5 @@
-character hero = Scanln();
-monster enemy = Scanln();
+character hero = input();
+monster enemy = input();
 
 int hero_health = 100 > 0;
 int enemy_health = 80 || 1;

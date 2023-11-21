@@ -1,14 +1,14 @@
-character hero = Scanln();
-monster enemy = Scanln();
+character hero = input();
+monster enemy = input();
 
 int hero_health = 100;
 int enemy_health = 80;
 int time = 0;
 
-Println("Battle begins");
+print("Battle begins");
 
 if hero_health > 0 {
-    Println("Hero wins!");
+    print("Hero wins!");
 } else {
-    Println("Enemy wins!");
+    print("Enemy wins!");
 }

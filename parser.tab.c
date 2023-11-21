@@ -135,7 +135,7 @@ enum yysymbol_kind_t
   YYSYMBOL_CHARACTER = 27,                 /* CHARACTER  */
   YYSYMBOL_MONSTER = 28,                   /* MONSTER  */
   YYSYMBOL_INT = 29,                       /* INT  */
-  YYSYMBOL_SCANLN = 30,                    /* SCANLN  */
+  YYSYMBOL_INPUT = 30,                     /* INPUT  */
   YYSYMBOL_IDENTIFIER = 31,                /* IDENTIFIER  */
   YYSYMBOL_NUMBER = 32,                    /* NUMBER  */
   YYSYMBOL_STRING = 33,                    /* STRING  */
@@ -570,8 +570,8 @@ static const char *const yytname[] =
   "RBRACE", "LPAREN", "RPAREN", "SEMICOLON", "EQUALS", "OR", "AND",
   "EQUALITY", "GREATER", "LESS", "PLUS", "MINUS", "MULT", "DIV", "NOT",
   "PRINT", "IF", "ELSE", "COMBAT", "WHILE", "PROGRESS", "ACTION",
-  "CHARACTER", "MONSTER", "INT", "SCANLN", "IDENTIFIER", "NUMBER",
-  "STRING", "\"act\"", "$accept", "PROGRAM", "STATEMENT", "ASSIGNMENT",
+  "CHARACTER", "MONSTER", "INT", "INPUT", "IDENTIFIER", "NUMBER", "STRING",
+  "\"act\"", "$accept", "PROGRAM", "STATEMENT", "ASSIGNMENT",
   "PRINT_STATEMENT", "IF_STATEMENT", "COMBAT_LOOP", "ACTION_STATEMENT",
   "VAR", "TYPE", "BOOLEXPRESSION", "BOOLTERM", "RELEXPRESSION",
   "EXPRESSION", "TERM", "FACTOR", "BLOCK", "STATEMENT_LIST", YY_NULLPTR

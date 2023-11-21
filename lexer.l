@@ -40,7 +40,7 @@ void yyerror(const char *s);
 "character"          { printf("Token: CHARACTER\n"); return CHARACTER; }
 "monster"            { printf("Token: MONSTER\n"); return MONSTER; }
 "int"                { printf("Token: INT\n"); return INT; }
-"Scanln"             { printf("Token: SCANLN\n"); return SCANLN; }
+"input"             { printf("Token: INPUT\n"); return INPUT; }
 [a-zA-Z_][a-zA-Z0-9_]* { printf("Token: IDENTIFIER (%s)\n", yytext); yylval = strdup(yytext); return IDENTIFIER; }
 [0-9]+               { printf("Token: NUMBER (%s)\n", yytext); yylval = atoi(yytext); return NUMBER; }
 \"[^"]*\"            { printf("Token: STRING (%s)\n", yytext); yylval = strdup(yytext); return STRING; }
