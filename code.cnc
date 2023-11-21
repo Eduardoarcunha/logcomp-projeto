@@ -1,3 +1,7 @@
+action soma(a int, b int) int{
+    act a + b;
+}
+
 
 action main() int{
     string hero = input();
@@ -23,4 +27,8 @@ action main() int{
     } else {
         print("Enemy wins!");
     }
+
+    print("Remaining health:");
+    print(soma(hero_health, enemy_health));
+
 }

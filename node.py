@@ -219,7 +219,6 @@ class FuncDec(Node):
 
 class FuncCall(Node):
     def evaluate(self, symbol_table):
-        # print(self.value, symbol_table.func_table)
         if self.value == "main":
             main_func = symbol_table.get_func("main")
             main_ret = main_func["node"].children[-1].evaluate(symbol_table)

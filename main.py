@@ -277,21 +277,6 @@ class Parser:
                 node.children.append(inc)
                 block = Parser.parse_block()
                 node.children.append(block)
-
-                # if Parser.tokenizer.next.type == "SEMI_COLON":
-                #     Parser.tokenizer.select_next()
-                #     condition = Parser.parse_bool_expression()
-                #     node.children.append(condition)
-                #     if Parser.tokenizer.next.type == "SEMI_COLON":
-                #         Parser.tokenizer.select_next()
-                #         inc = Parser.parse_assignment()
-                #         node.children.append(inc)
-                #         block = Parser.parse_block()
-                #         node.children.append(block)
-                #     else:
-                #         raise Exception
-                # else:
-                #     raise Exception
                 
             elif Parser.tokenizer.next.type == "TYPE":
                 node = VarDec(None, [])

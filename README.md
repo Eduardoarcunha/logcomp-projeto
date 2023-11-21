@@ -10,21 +10,21 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **BLOCK = "{", "\n", {STATEMENT}, "}" ;**
 
-**STATEMENT = ( λ | ASSIGNMENT | PRINT | IF | COMBAT_LOOP | VAR | ACTION), "\n" ;**
+**STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT_LOOP | VAR, ";" | ACTION), "\n" ;**
 
 **ASSIGNMENT = IDENTIFIER, "=", BOOLEXPRESSION ;**
 
 **PRINT = "print", "(", BOOLEXPRESSION, ")" ;**
 
-**IF = "if", "BOOLEXPRESSION, BLOCK, {"else", BLOCK}" ;**
+**IF = "if", BOOLEXPRESSION, BLOCK, {"else", BLOCK}" ;**
 
-**COMBAT_LOOP = "combat", ";", ASSIGNMENT, ";", "while", BOOLEXPRESSION, "progress", BOOLEXPRESSION, BLOCK ;**
+**COMBAT_LOOP = "combat", ";", ASSIGNMENT, ";", "while", BOOLEXPRESSION, "progress", ASSIGNMENT, BLOCK ;**
 
-**ACTION = "action", IDENTIFIER, "{", "\n", {STATEMENT}, "act" "}" ;**
+**ACTION = "action", IDENTIFIER, "{", "\n", {STATEMENT}, "act", ";", "}" ;**
 
-**VAR = TYPE, IDENTIFIER, "=", BOOLEXPRESSION;**
+**VAR = TYPE, IDENTIFIER, "=", BOOLEXPRESSION ;**
 
-**TYPE = ("character", "monster", "int")**
+**TYPE = ("string", "int")**
 
 **BOOLEXPRESSION = BOOLTERM, {"||", BOOLTERM} ;**
 
