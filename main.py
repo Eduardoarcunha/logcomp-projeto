@@ -184,6 +184,7 @@ class Parser:
                         raise Exception
                 return node
             else:
+                print(Parser.tokenizer.next.type, Parser.tokenizer.next.value)
                 raise Exception
         
         return None
@@ -401,17 +402,24 @@ class Parser:
         while Parser.tokenizer.next.type != "EOF":
             if Parser.tokenizer.next.type == "ENDL":
                 Parser.tokenizer.select_next()
-            else:
+            elif Parser.tokenizer.next.type == "ACTION":  # Function declaration
                 child = Parser.parse_declaration()
                 node.children.append(child)
+            else:
+                # Handling top-level statements
+                statement = Parser.parse_top_level_statement()
+                node.children.append(statement)
+            
+        return node
 
-        main_call_node = FuncCall(None, [])
-        main_call_node.value = "main"
-        node.children.append(main_call_node)
+    @staticmethod
+    def parse_top_level_statement():
+        node = Parser.parse_statement()
+        if node.__class__.__name__ == "Return":
+            raise Exception("Return statements are not allowed outside of function definitions.")
 
         return node
-    
-    
+        
     @staticmethod
     def run(code):
         Parser.tokenizer = Tokenizer(code)
@@ -420,10 +428,6 @@ class Parser:
         if Parser.tokenizer.next.type != "EOF":
             raise Exception
         return root
-
-        # while Parser.tokenizer.next.type != "EOF":
-        #     print(f'{Parser.tokenizer.next.type} -> {Parser.tokenizer.next.value}')
-        #     Parser.tokenizer.select_next()
 
 cnc_code = ""
 try:

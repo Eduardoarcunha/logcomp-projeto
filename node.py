@@ -219,13 +219,13 @@ class FuncDec(Node):
 
 class FuncCall(Node):
     def evaluate(self, symbol_table):
-        if self.value == "main":
-            main_func = symbol_table.get_func("main")
-            main_ret = main_func["node"].children[-1].evaluate(symbol_table)
-            if main_ret:
-                if main_func["type"] != main_ret["type"]:
-                    raise Exception
-            return
+        # if self.value == "main":
+        #     main_func = symbol_table.get_func("main")
+        #     main_ret = main_func["node"].children[-1].evaluate(symbol_table)
+        #     if main_ret:
+        #         if main_func["type"] != main_ret["type"]:
+        #             raise Exception
+        #     return
 
         func_info = symbol_table.get_func(self.value)
         node = func_info["node"]
