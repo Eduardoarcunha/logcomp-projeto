@@ -30,7 +30,7 @@ void yyerror(const char *s);
 "*"                  { printf("Token: MULT\n"); return MULT; }
 "/"                  { printf("Token: DIV\n"); return DIV; }
 "!"                  { printf("Token: NOT\n"); return NOT; }
-"Println"            { printf("Token: PRINTLN\n"); return PRINTLN; }
+"print"            { printf("Token: PRINT\n"); return PRINT; }
 "if"                 { printf("Token: IF\n"); return IF; }
 "else"               { printf("Token: ELSE\n"); return ELSE; }
 "combat"             { printf("Token: COMBAT\n"); return COMBAT; }

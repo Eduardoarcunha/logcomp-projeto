@@ -71,7 +71,7 @@ extern int yydebug;
     MULT = 272,                    /* MULT  */
     DIV = 273,                     /* DIV  */
     NOT = 274,                     /* NOT  */
-    PRINTLN = 275,                 /* PRINTLN  */
+    PRINT = 275,                   /* PRINT  */
     IF = 276,                      /* IF  */
     ELSE = 277,                    /* ELSE  */
     COMBAT = 278,                  /* COMBAT  */

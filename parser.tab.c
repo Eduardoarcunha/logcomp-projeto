@@ -125,7 +125,7 @@ enum yysymbol_kind_t
   YYSYMBOL_MULT = 17,                      /* MULT  */
   YYSYMBOL_DIV = 18,                       /* DIV  */
   YYSYMBOL_NOT = 19,                       /* NOT  */
-  YYSYMBOL_PRINTLN = 20,                   /* PRINTLN  */
+  YYSYMBOL_PRINT = 20,                     /* PRINT  */
   YYSYMBOL_IF = 21,                        /* IF  */
   YYSYMBOL_ELSE = 22,                      /* ELSE  */
   YYSYMBOL_COMBAT = 23,                    /* COMBAT  */
@@ -144,7 +144,7 @@ enum yysymbol_kind_t
   YYSYMBOL_PROGRAM = 36,                   /* PROGRAM  */
   YYSYMBOL_STATEMENT = 37,                 /* STATEMENT  */
   YYSYMBOL_ASSIGNMENT = 38,                /* ASSIGNMENT  */
-  YYSYMBOL_PRINT = 39,                     /* PRINT  */
+  YYSYMBOL_PRINT_STATEMENT = 39,           /* PRINT_STATEMENT  */
   YYSYMBOL_IF_STATEMENT = 40,              /* IF_STATEMENT  */
   YYSYMBOL_COMBAT_LOOP = 41,               /* COMBAT_LOOP  */
   YYSYMBOL_ACTION_STATEMENT = 42,          /* ACTION_STATEMENT  */
@@ -569,12 +569,12 @@ static const char *const yytname[] =
   "\"end of file\"", "error", "\"invalid token\"", "NEWLINE", "LBRACE",
   "RBRACE", "LPAREN", "RPAREN", "SEMICOLON", "EQUALS", "OR", "AND",
   "EQUALITY", "GREATER", "LESS", "PLUS", "MINUS", "MULT", "DIV", "NOT",
-  "PRINTLN", "IF", "ELSE", "COMBAT", "WHILE", "PROGRESS", "ACTION",
+  "PRINT", "IF", "ELSE", "COMBAT", "WHILE", "PROGRESS", "ACTION",
   "CHARACTER", "MONSTER", "INT", "SCANLN", "IDENTIFIER", "NUMBER",
   "STRING", "\"act\"", "$accept", "PROGRAM", "STATEMENT", "ASSIGNMENT",
-  "PRINT", "IF_STATEMENT", "COMBAT_LOOP", "ACTION_STATEMENT", "VAR",
-  "TYPE", "BOOLEXPRESSION", "BOOLTERM", "RELEXPRESSION", "EXPRESSION",
-  "TERM", "FACTOR", "BLOCK", "STATEMENT_LIST", YY_NULLPTR
+  "PRINT_STATEMENT", "IF_STATEMENT", "COMBAT_LOOP", "ACTION_STATEMENT",
+  "VAR", "TYPE", "BOOLEXPRESSION", "BOOLTERM", "RELEXPRESSION",
+  "EXPRESSION", "TERM", "FACTOR", "BLOCK", "STATEMENT_LIST", YY_NULLPTR
 };
 
 static const char *
