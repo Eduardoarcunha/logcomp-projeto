@@ -77,7 +77,7 @@ class Parser:
                 Parser.tokenizer.select_next()
                 return node
         
-        if Parser.tokenizer.next.type == "SCAN":
+        if Parser.tokenizer.next.type == "INPUT":
             node = Scan(None, [])
             Parser.tokenizer.select_next()
             if Parser.tokenizer.next.type == "LEFT_PAR":
@@ -163,6 +163,7 @@ class Parser:
                 node.children.append(id_node)
                 Parser.tokenizer.select_next()
                 node.children.append(Parser.parse_bool_expression())
+
                 return node
             
             elif Parser.tokenizer.next.type == "LEFT_PAR":
@@ -208,6 +209,11 @@ class Parser:
     @staticmethod
     def parse_statement():
         node = Parser.parse_assignment()
+        if node:
+            if Parser.tokenizer.next.type != "SEMI_COLON":
+                raise Exception
+            Parser.tokenizer.select_next()
+
         if node is None:
             if Parser.tokenizer.next.type == "PRINT":
                 node = Println(None, [])
@@ -217,6 +223,10 @@ class Parser:
                     node.children.append(Parser.parse_bool_expression())
                     if Parser.tokenizer.next.type == "RIGHT_PAR":
                         Parser.tokenizer.select_next()
+                        if Parser.tokenizer.next.type == "SEMI_COLON":
+                            Parser.tokenizer.select_next()
+                        else:
+                            raise Exception
                     else:
                         raise Exception
                 else:
@@ -237,29 +247,55 @@ class Parser:
                     false_block = Parser.parse_block()
                     node.children.append(false_block)
 
-            elif Parser.tokenizer.next.type == "FOR":
+            elif Parser.tokenizer.next.type == "COMBAT":
                 node = For(None, [])
                 Parser.tokenizer.select_next()
+                
+                if Parser.tokenizer.next.type != "SEMI_COLON":
+                    raise Exception
+                Parser.tokenizer.select_next()
+
                 init = Parser.parse_assignment()
                 node.children.append(init)
 
-                if Parser.tokenizer.next.type == "SEMI_COLON":
-                    Parser.tokenizer.select_next()
-                    condition = Parser.parse_bool_expression()
-                    node.children.append(condition)
-                    if Parser.tokenizer.next.type == "SEMI_COLON":
-                        Parser.tokenizer.select_next()
-                        inc = Parser.parse_assignment()
-                        node.children.append(inc)
-                        block = Parser.parse_block()
-                        node.children.append(block)
-                    else:
-                        raise Exception
-                else:
+                if Parser.tokenizer.next.type != "SEMI_COLON":
                     raise Exception
+                Parser.tokenizer.select_next()
+
+                if Parser.tokenizer.next.type != "WHILE":
+                    raise Exception
+                Parser.tokenizer.select_next()
+
+                condition = Parser.parse_bool_expression()
+                node.children.append(condition)
+
+                if Parser.tokenizer.next.type != "PROGRESS":
+                    raise Exception
+                Parser.tokenizer.select_next()
+
+                inc = Parser.parse_assignment()
+                node.children.append(inc)
+                block = Parser.parse_block()
+                node.children.append(block)
+
+                # if Parser.tokenizer.next.type == "SEMI_COLON":
+                #     Parser.tokenizer.select_next()
+                #     condition = Parser.parse_bool_expression()
+                #     node.children.append(condition)
+                #     if Parser.tokenizer.next.type == "SEMI_COLON":
+                #         Parser.tokenizer.select_next()
+                #         inc = Parser.parse_assignment()
+                #         node.children.append(inc)
+                #         block = Parser.parse_block()
+                #         node.children.append(block)
+                #     else:
+                #         raise Exception
+                # else:
+                #     raise Exception
                 
-            elif Parser.tokenizer.next.type == "VAR":
+            elif Parser.tokenizer.next.type == "TYPE":
                 node = VarDec(None, [])
+                node.value = Parser.tokenizer.next.value
                 Parser.tokenizer.select_next()
 
                 if Parser.tokenizer.next.type == "ID":
@@ -268,26 +304,30 @@ class Parser:
                     node.children.append(iden_symbol)
                     Parser.tokenizer.select_next()
 
-                    if Parser.tokenizer.next.type == "TYPE":
-                        node.value = Parser.tokenizer.next.value
+                    if Parser.tokenizer.next.type == "EQUAL":
                         Parser.tokenizer.select_next()
+                        iden_val = Parser.parse_bool_expression()
+                        node.children.append(iden_val)
 
-                        if Parser.tokenizer.next.type == "EQUAL":
+                        if Parser.tokenizer.next.type == "SEMI_COLON":
                             Parser.tokenizer.select_next()
-                            iden_val = Parser.parse_bool_expression()
-                            node.children.append(iden_val)
+                        else:
+                            raise Exception 
 
                     else:
                         raise Exception
-                    
                 
                 else:
                     raise Exception
             
-            elif Parser.tokenizer.next.type == "RETURN":
+            elif Parser.tokenizer.next.type == "ACT":
                 node = Return(None, [])
                 Parser.tokenizer.select_next()
                 node.children.append(Parser.parse_bool_expression())
+                if Parser.tokenizer.next.type == "SEMI_COLON":
+                    Parser.tokenizer.select_next()
+                else:
+                    raise Exception
 
         if Parser.tokenizer.next.type == "ENDL":
             Parser.tokenizer.select_next()
@@ -298,7 +338,7 @@ class Parser:
     @staticmethod
     def parse_declaration():
         func_dec_node = FuncDec(None, [])
-        if Parser.tokenizer.next.type != "FUNC":
+        if Parser.tokenizer.next.type != "ACTION":
             raise Exception
         Parser.tokenizer.select_next()
 
@@ -352,6 +392,8 @@ class Parser:
         else:
             raise Exception
         
+        # print(Parser.tokenizer.next.type)
+        
         if Parser.tokenizer.next.type != "TYPE":
             raise Exception
         var_dec1_node.value = Parser.tokenizer.next.value
@@ -389,14 +431,14 @@ class Parser:
     def run(code):
         Parser.tokenizer = Tokenizer(code)
 
-        # root = Parser.parse_program()
-        # if Parser.tokenizer.next.type != "EOF":
-        #     raise Exception
-        # return root
+        root = Parser.parse_program()
+        if Parser.tokenizer.next.type != "EOF":
+            raise Exception
+        return root
 
-        while Parser.tokenizer.next.type != "EOF":
-            print(f'{Parser.tokenizer.next.type} -> {Parser.tokenizer.next.value}')
-            Parser.tokenizer.select_next()
+        # while Parser.tokenizer.next.type != "EOF":
+        #     print(f'{Parser.tokenizer.next.type} -> {Parser.tokenizer.next.value}')
+        #     Parser.tokenizer.select_next()
 
 cnc_code = ""
 try:
@@ -410,4 +452,4 @@ symbol_table = SymbolTable()
 # graph = root.to_graphviz()
 # graph.render('ast_graph', view=True)  # Saves to 'ast_graph.pdf' and opens it
 # print(symbol_table.func_table)
-# root.evaluate(symbol_table)
+root.evaluate(symbol_table)

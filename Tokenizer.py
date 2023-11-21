@@ -16,7 +16,9 @@ class Tokenizer:
         "character": "TYPE",
         "int": "TYPE",
         "monster": "TYPE",
-        "act": "ACTION",
+        "string": "TYPE",
+        "action": "ACTION",
+        "act": "ACT",
         "while": "WHILE",
         "combat": "COMBAT",
         "progress": "PROGRESS",
@@ -79,6 +81,7 @@ class Tokenizer:
         self.position += 1
 
     def select_next(self):
+        
         if self.position >= len(self.source):
             self.next = Token("EOF", 0)
             return

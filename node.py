@@ -185,11 +185,18 @@ class For(Node):
         while self.children[1].evaluate(symbol_table)["value"]:
             self.children[3].evaluate(symbol_table)
             self.children[2].evaluate(symbol_table)
+            # Teoricamente uma mensagem aqui?
+
 
 
 class Scan(Node):
     def evaluate(self, symbol_table):
-        return {"value": int(input()), "type": "int"}
+        var = input()
+        if var.isdigit():
+            return {"value": int(var), "type": "int"}
+        return {"value": var, "type": "string"}
+
+        # return {"value": int(input()), "type": "int"}
 
 
 class VarDec(Node):
