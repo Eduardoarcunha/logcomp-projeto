@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import random
 
 from graphviz import Digraph
 from SymbolTable import SymbolTable
@@ -61,6 +62,11 @@ class BinOp(Node):
         if self.value == "/":
             if child1["type"] == "int" and child2["type"] == "int":
                 return {"value": child1["value"] // child2["value"], "type": "int"}
+            raise Exception
+        
+        if self.value == "%":
+            if child1["type"] == "int" and child2["type"] == "int":
+                return {"value": child1["value"] % child2["value"], "type": "int"}
             raise Exception
 
         if self.value == "||":
@@ -173,7 +179,7 @@ class Assignment(Node):
 
 class If(Node):
     def evaluate(self, symbol_table):
-        if self.children[0].evaluate(symbol_table):
+        if self.children[0].evaluate(symbol_table)["value"]:
             self.children[1].evaluate(symbol_table)
         elif len(self.children) > 2:
             self.children[2].evaluate(symbol_table)
@@ -198,6 +204,9 @@ class Scan(Node):
 
         # return {"value": int(input()), "type": "int"}
 
+class Roll(Node):
+    def evaluate(self, symbol_table):
+        return {"value": random.randint(1, self.children[0].evaluate(symbol_table)["value"]), "type": "int"}
 
 class VarDec(Node):
     def evaluate(self, symbol_table):

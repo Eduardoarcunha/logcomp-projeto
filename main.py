@@ -85,6 +85,16 @@ class Parser:
                 if Parser.tokenizer.next.type == "RIGHT_PAR":
                     Parser.tokenizer.select_next()
             return node
+        
+        if Parser.tokenizer.next.type == "ROLL":
+            node = Roll(None, [])
+            Parser.tokenizer.select_next()
+            if Parser.tokenizer.next.type == "LEFT_PAR":
+                Parser.tokenizer.select_next()
+                node.children.append(Parser.parse_bool_expression())
+                if Parser.tokenizer.next.type == "RIGHT_PAR":
+                    Parser.tokenizer.select_next()
+            return node
 
         raise Exception
 
@@ -104,7 +114,7 @@ class Parser:
     @staticmethod
     def parse_expression():
         node = Parser.parse_term()
-        while Parser.tokenizer.next.type in ["PLUS", "MINUS", "CONCAT"]:
+        while Parser.tokenizer.next.type in ["PLUS", "MINUS", "CONCAT", "MODULO"]:
             operator = Parser.tokenizer.next.value
             temp = BinOp(operator, [])
             temp.children.append(node)
@@ -184,7 +194,6 @@ class Parser:
                         raise Exception
                 return node
             else:
-                print(Parser.tokenizer.next.type, Parser.tokenizer.next.value)
                 raise Exception
         
         return None
@@ -294,11 +303,9 @@ class Parser:
                         Parser.tokenizer.select_next()
                         iden_val = Parser.parse_bool_expression()
                         node.children.append(iden_val)
-
-                        if Parser.tokenizer.next.type == "SEMI_COLON":
-                            Parser.tokenizer.select_next()
-                        else:
-                            raise Exception 
+                        
+                    if Parser.tokenizer.next.type == "SEMI_COLON":
+                        Parser.tokenizer.select_next()
 
                     else:
                         raise Exception

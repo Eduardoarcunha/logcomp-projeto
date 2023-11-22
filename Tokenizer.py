@@ -22,6 +22,7 @@ class Tokenizer:
         "while": "WHILE",
         "combat": "COMBAT",
         "progress": "PROGRESS",
+        "roll": "ROLL",
     }
 
     def __init__(self, source: str):
@@ -98,6 +99,8 @@ class Tokenizer:
             self.parse_operator("TIMES", "*")
         elif character == "/":
             self.parse_operator("DIVIDED", "/")
+        elif character == "%":
+            self.parse_operator("MODULO", "%")
         elif character == "(":
             self.parse_operator("LEFT_PAR", "(")
         elif character == ")":

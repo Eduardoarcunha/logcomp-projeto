@@ -1,31 +1,60 @@
-action soma(a int, b int) int{
-    act a + b;
+action sub(a int, b int) int {
+    act a - b;
 }
 
-string hero = input();
-string enemy = input();
+string sorcerer = "Daar";
+string cleric = "Reegull";
+string giant = "Fenir";
 
+int sorcererLife = 10;
+int clericLife = 10;
+int giantLife = 20;
 
-int hero_health = 100;
-int enemy_health = 80;
-int time = 0;
+int sorcererDice = 10;
+int clericDice = 6;
+int giantDice = 4;
 
-print("Battle begins");
+int attackRoll;
+int time;
 
-combat ; time = 0 ;  while hero_health > 0 && enemy_health > 0 progress time = time + 1 {
-    enemy_health = enemy_health - 10;
-    print("Hero attacks!");
-    print(enemy_health);
-    hero_health = hero_health - 5;
-    print("Enemy counterattacks!");
-    print(hero_health);
+combat; time = 0; while (sorcererLife > 0 || clericLife > 0) && giantLife > 0 progress time = time + 1 {
+    print("Current combat time: " . time . "s");
+    print("");
+
+    if (time % 3 == 0) {
+        print(sorcerer . "'s turn");
+        attackRoll = roll(sorcererDice);
+        giantLife = sub(giantLife, attackRoll);
+        print(sorcerer . " attacked " . giant . " with " . attackRoll . " points of damage!");
+
+    } else {
+        if (time % 3 == 1) {
+            print(cleric . "'s turn");
+            attackRoll = roll(clericDice);
+            giantLife = sub(giantLife, attackRoll);
+            print(cleric . " attacked " . giant . " with " . attackRoll . " points of damage!");
+
+        } else {
+            print(giant . "'s turn");
+            attackRoll = roll(giantDice);
+
+            if (roll(2) == 1) {
+                sorcererLife = sub(sorcererLife, attackRoll);
+                print(giant . " attacked " . sorcerer . " with " . attackRoll . " points of damage!");
+
+            } else {
+                clericLife = sub(clericLife, attackRoll);
+                print(giant . " attacked " . cleric . " with " . attackRoll . " points of damage!");
+            }
+        }
+    }
 }
 
-if hero_health > 0 {
-    print("Hero wins!");
+if (sorcererLife > 0 || clericLife > 0) {
+    print("The monster was defeated!");
 } else {
-    print("Enemy wins!");
+    print("The players were defeated!");
 }
 
-print("Remaining health:");
-print(soma(hero_health, enemy_health));
+print("Battle ended");
+
