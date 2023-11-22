@@ -14,17 +14,19 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **BLOCK = "{", "\n", {STATEMENT}, "}" ;**
 
-**TOP_LEVEL_STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT_LOOP | VAR, ";" | ACTION), "\n" ;**
+**TOP_LEVEL_STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT | VAR, ";" | ACTION), "\n" ;**
 
-**STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT_LOOP | VAR, ";" | "act", ";"), "\n" ;**
+**STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT | VAR, ";" | "act", BOOLEXPRESSION, ";"), "\n" ;**
 
-**ASSIGNMENT = IDENTIFIER, "=", BOOLEXPRESSION ;**
+**ASSIGNMENT = IDENTIFIER, ("=", BOOLEXPRESSION | FUNCARGS) ;**
+
+**FUNCARGS = "(", (λ | {BOOLEXPRESSION, {",", BOOLEXPRESSION}} ")") ;**
 
 **PRINT = "print", "(", BOOLEXPRESSION, ")" ;**
 
 **IF = "if", BOOLEXPRESSION, BLOCK, {"else", BLOCK}" ;**
 
-**COMBAT_LOOP = "combat", ";", ASSIGNMENT, ";", "while", BOOLEXPRESSION, "progress", ASSIGNMENT, BLOCK ;**
+**COMBAT = "combat", ";", ASSIGNMENT, ";", "while", BOOLEXPRESSION, "progress", ASSIGNMENT, BLOCK ;**
 
 **VAR = TYPE, IDENTIFIER, "=", BOOLEXPRESSION ;**
 
@@ -40,7 +42,7 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **TERM = FACTOR, { ("*" | "/", ".", "%"), FACTOR } ;**
 
-**FACTOR = (("+" | "-" | "!"), FACTOR) | string | NUMBER | "(", BOOLEXPRESSION, ")" | IDENTIFIER | "input", "(", ")" | "roll", "(", BOOLEXPRESSION, ")" ;**
+**FACTOR = (("+" | "-" | "!"), FACTOR) | string | NUMBER | "(", BOOLEXPRESSION, ")" | IDENTIFIER (λ | FUNCARGS) | "input", "(", ")" | "roll", "(", BOOLEXPRESSION, ")" ;**
 
 **IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;**
 
