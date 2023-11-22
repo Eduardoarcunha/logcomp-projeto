@@ -1,5 +1,5 @@
-character hero = input();
-monster enemy = input();
+string hero = input();
+string enemy = input();
 
 int hero_health = 100 > 0;
 int enemy_health = 80 || 1;

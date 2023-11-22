@@ -20,7 +20,7 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **ASSIGNMENT = IDENTIFIER, ("=", BOOLEXPRESSION | FUNCARGS) ;**
 
-**FUNCARGS = "(", (λ | {BOOLEXPRESSION, {",", BOOLEXPRESSION}} ")") ;**
+**FUNCARGS = "(", (λ | {BOOLEXPRESSION, {",", BOOLEXPRESSION}} ) ")" ;**
 
 **PRINT = "print", "(", BOOLEXPRESSION, ")" ;**
 

@@ -70,21 +70,25 @@ extern int yydebug;
     MINUS = 271,                   /* MINUS  */
     MULT = 272,                    /* MULT  */
     DIV = 273,                     /* DIV  */
-    NOT = 274,                     /* NOT  */
-    PRINT = 275,                   /* PRINT  */
-    IF = 276,                      /* IF  */
-    ELSE = 277,                    /* ELSE  */
-    COMBAT = 278,                  /* COMBAT  */
-    WHILE = 279,                   /* WHILE  */
-    PROGRESS = 280,                /* PROGRESS  */
-    ACTION = 281,                  /* ACTION  */
-    CHARACTER = 282,               /* CHARACTER  */
-    MONSTER = 283,                 /* MONSTER  */
-    INT = 284,                     /* INT  */
-    INPUT = 285,                   /* INPUT  */
-    IDENTIFIER = 286,              /* IDENTIFIER  */
-    NUMBER = 287,                  /* NUMBER  */
-    STRING = 288                   /* STRING  */
+    MODULO = 274,                  /* MODULO  */
+    CONCAT = 275,                  /* CONCAT  */
+    NOT = 276,                     /* NOT  */
+    PRINT = 277,                   /* PRINT  */
+    IF = 278,                      /* IF  */
+    ELSE = 279,                    /* ELSE  */
+    COMBAT = 280,                  /* COMBAT  */
+    WHILE = 281,                   /* WHILE  */
+    PROGRESS = 282,                /* PROGRESS  */
+    ACTION = 283,                  /* ACTION  */
+    STRING = 284,                  /* STRING  */
+    INT = 285,                     /* INT  */
+    INPUT = 286,                   /* INPUT  */
+    IDENTIFIER = 287,              /* IDENTIFIER  */
+    NUMBER = 288,                  /* NUMBER  */
+    TYPE = 289,                    /* TYPE  */
+    COMMA = 290,                   /* COMMA  */
+    ACT = 291,                     /* ACT  */
+    ROLL = 292                     /* ROLL  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
