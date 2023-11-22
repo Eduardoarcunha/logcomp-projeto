@@ -6,11 +6,17 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 ## EBNF
 
-**PROGRAM = { STATEMENT };**
+**PROGRAM = { DECLARATION | TOP_LEVEL_STATEMENT };**
+
+**DECLARATION = "action", IDENTIFIER, "(", ARGS, ")", "TYPE", BLOCK, "\n" ;**
+
+**ARGS = ( λ | IDENTIFIER, TYPE, {",", IDENTIFIER, TYPE} )**
 
 **BLOCK = "{", "\n", {STATEMENT}, "}" ;**
 
-**STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT_LOOP | VAR, ";" | ACTION), "\n" ;**
+**TOP_LEVEL_STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT_LOOP | VAR, ";" | ACTION), "\n" ;**
+
+**STATEMENT = ( λ | ASSIGNMENT, ";" | PRINT, ";" | IF | COMBAT_LOOP | VAR, ";" | "act", ";"), "\n" ;**
 
 **ASSIGNMENT = IDENTIFIER, "=", BOOLEXPRESSION ;**
 
@@ -19,8 +25,6 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 **IF = "if", BOOLEXPRESSION, BLOCK, {"else", BLOCK}" ;**
 
 **COMBAT_LOOP = "combat", ";", ASSIGNMENT, ";", "while", BOOLEXPRESSION, "progress", ASSIGNMENT, BLOCK ;**
-
-**ACTION = "action", IDENTIFIER, "{", "\n", {STATEMENT}, "act", ";", "}" ;**
 
 **VAR = TYPE, IDENTIFIER, "=", BOOLEXPRESSION ;**
 
@@ -34,9 +38,9 @@ Este repositório tem como objetivo descrever a linguagem de programaçãop Code
 
 **EXPRESSION = TERM, { ("+" | "-"), TERM } ;**
 
-**TERM = FACTOR, { ("*" | "/"), FACTOR } ;**
+**TERM = FACTOR, { ("*" | "/", ".", "%"), FACTOR } ;**
 
-**FACTOR = (("+" | "-" | "!"), FACTOR) | string | NUMBER | "(", BOOLEXPRESSION, ")" | IDENTIFIER | "input", "(", ")" ;**
+**FACTOR = (("+" | "-" | "!"), FACTOR) | string | NUMBER | "(", BOOLEXPRESSION, ")" | IDENTIFIER | "input", "(", ")" | "roll", "(", BOOLEXPRESSION, ")" ;**
 
 **IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;**
 
